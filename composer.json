@@ -1,0 +1,26 @@
+{
+    "name": "mukadi/chartjs-bundle",
+    "description": "build awesome chartJS charts directly from ORM Entities",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name" : "Olivier M. Mukadi",
+            "email" : "mbo2olivier@gmail.com",
+            "homepage": "http://www.virtualconsultafrica.com"
+        }
+    ],
+    "keywords" : [
+        "symfony bundle", "Charts", "chart.js","chartjs","Chart builder","Graphics"
+    ],
+    "require": {
+        "php": ">=5.3.7",
+        "twig/twig": "~1.20|~2.0",
+        "doctrine/orm": "~2.4"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Mukadi\\ChartJSBundle\\" : ""
+        }
+    }
+}
