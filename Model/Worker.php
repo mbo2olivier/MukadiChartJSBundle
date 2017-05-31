@@ -14,6 +14,7 @@ use Mukadi\ChartJSBundle\Model\Cruncher\ConditionalValueMapper;
 use Mukadi\ChartJSBundle\Model\Cruncher\ValueMapper;
 use Mukadi\ChartJSBundle\Model\Manipulator\Condition;
 use Mukadi\ChartJSBundle\Model\Manipulator\GroupBy;
+use Mukadi\ChartJSBundle\Model\Manipulator\ModelJoiner;
 use Mukadi\ChartJSBundle\Model\Manipulator\ModelSetter;
 use Mukadi\ChartJSBundle\Model\Manipulator\ValueSelector;
 
@@ -46,12 +47,21 @@ class Worker implements WorkerInterface{
      * @var array
      */
     protected $func;
+    /**
+     * @var integer
+     */
+    protected $firstResult;
+    /**
+     * @var integer
+     */
+    protected $maxResult;
 
     public function __construct(){
         $this->query=array(
             'select' => "SELECT",
             'where' => "WHERE",
             'from' => "FROM",
+            'join' => "",
             'group' => "GROUP BY",
         );
         $this->params = array();
@@ -60,6 +70,8 @@ class Worker implements WorkerInterface{
         $this->valuesConfigs = array();
         $this->counter = 0;
         $this->func = array();
+        $this->firstResult = 0;
+        $this->maxResult = 0;
     }
 
     /**
@@ -67,7 +79,7 @@ class Worker implements WorkerInterface{
      */
     public function getQuery()
     {
-        $q =  $this->query['select'].$this->query['from'];
+        $q =  $this->query['select'].$this->query['from'].$this->query['join'];
         $q .= (strlen($this->query['where']) > 5)? " ".$this->query['where']:"";
         $q .= (strlen($this->query['group']) > 8)? " ".$this->query['group']:"";
         return $q;
@@ -101,6 +113,19 @@ class Worker implements WorkerInterface{
         $this->query['from'] = $c->updateQuery($this->query['from']);
         return $this;
     }
+
+    /**
+     * @param $entity
+     * @param $alias
+     * @return WorkerInterface
+     */
+    public function joinModel($entity, $alias)
+    {
+        $c = new ModelJoiner($entity,$alias);
+        $this->query['join'] = $c->updateQuery($this->query['join']);
+        return $this;
+    }
+
 
     /**
      * @param string $property
@@ -257,5 +282,39 @@ class Worker implements WorkerInterface{
         return $this->valuesConfigs[$key];
     }
 
+    /**
+     * @return int
+     */
+    public function getFirstResult()
+    {
+        return $this->firstResult;
+    }
 
+    /**
+     * @param int $firstResult
+     * @return WorkerInterface
+     */
+    public function setFirstResult($firstResult)
+    {
+        $this->firstResult = $firstResult;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxResult()
+    {
+        return $this->maxResult;
+    }
+
+    /**
+     * @param int $maxResult
+     * @return WorkerInterface
+     */
+    public function setMaxResult($maxResult)
+    {
+        $this->maxResult = $maxResult;
+        return $this;
+    }
 } 

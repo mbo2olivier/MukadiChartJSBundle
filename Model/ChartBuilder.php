@@ -10,6 +10,7 @@ namespace Mukadi\ChartJSBundle\Model;
 
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 abstract class ChartBuilder {
     /**
@@ -47,6 +48,12 @@ abstract class ChartBuilder {
         $params = $this->worker->getParams();
         foreach($params as $key => $value){
             $q->setParameter($key,$value);
+        }
+        if($this->worker->getFirstResult()){
+            $q->setFirstResult($this->worker->getFirstResult());
+            if($this->worker->getMaxResult()){
+                $q->setMaxResults($this->worker->getMaxResult());
+            }
         }
         $result = $q->getResult();
         $keys = $this->worker->getValueKeys();

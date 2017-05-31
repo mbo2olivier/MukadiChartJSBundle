@@ -34,6 +34,13 @@ interface WorkerInterface {
     public function setModel($entity,$alias);
 
     /**
+     * @param $entity
+     * @param $alias
+     * @return WorkerInterface
+     */
+    public function joinModel($entity,$alias);
+
+    /**
      * @param string $property
      * @param string $alias
      * @return WorkerInterface
@@ -107,4 +114,23 @@ interface WorkerInterface {
      * @return array
      */
     public function getConfigs($key);
+
+    /**
+     * @param integer $position
+     * @return WorkerInterface
+     */
+    public function setFirstResult($position);
+    /**
+     * @param integer $max
+     * @return WorkerInterface
+     */
+    public function setMaxResult($max);
+    /**
+     * @return integer
+     */
+    public function getFirstResult();
+    /**
+     * @return integer
+     */
+    public function getMaxResult();
 } 

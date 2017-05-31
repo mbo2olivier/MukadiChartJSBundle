@@ -56,6 +56,18 @@ class SimpleChartBuilder extends ChartBuilder implements WorkerInterface{
     }
 
     /**
+     * @param $entity
+     * @param $alias
+     * @return WorkerInterface
+     */
+    public function joinModel($entity, $alias)
+    {
+        $this->worker->joinModel($entity,$alias);
+        return $this;
+    }
+
+
+    /**
      * @param string $property
      * @param string $alias
      * @return WorkerInterface
@@ -123,7 +135,7 @@ class SimpleChartBuilder extends ChartBuilder implements WorkerInterface{
      */
     public function conditions()
     {
-        return $this->worker->conditions();
+        return new Condition($this);
     }
 
     /**
@@ -182,6 +194,42 @@ class SimpleChartBuilder extends ChartBuilder implements WorkerInterface{
     public function getConfigs($key)
     {
         return $this->worker->getConfigs($key);
+    }
+
+    /**
+     * @param integer $position
+     * @return WorkerInterface
+     */
+    public function setFirstResult($position)
+    {
+        $this->worker->setFirstResult($position);
+        return $this;
+    }
+
+    /**
+     * @param integer $max
+     * @return WorkerInterface
+     */
+    public function setMaxResult($max)
+    {
+        $this->worker->setMaxResult($max);
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getFirstResult()
+    {
+        return $this->worker->getFirstResult();
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMaxResult()
+    {
+        return $this->worker->getMaxResult();
     }
 
 
