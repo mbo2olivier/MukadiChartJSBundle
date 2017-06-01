@@ -55,6 +55,10 @@ class Worker implements WorkerInterface{
      * @var integer
      */
     protected $maxResult;
+    /**
+     * @var array
+     */
+    protected $order;
 
     public function __construct(){
         $this->query=array(
@@ -72,6 +76,7 @@ class Worker implements WorkerInterface{
         $this->func = array();
         $this->firstResult = 0;
         $this->maxResult = 0;
+        $this->order = array();
     }
 
     /**
@@ -82,6 +87,15 @@ class Worker implements WorkerInterface{
         $q =  $this->query['select'].$this->query['from'].$this->query['join'];
         $q .= (strlen($this->query['where']) > 5)? " ".$this->query['where']:"";
         $q .= (strlen($this->query['group']) > 8)? " ".$this->query['group']:"";
+        if($count = count($this->order) > 0){
+            $q .= " ORDER BY ";
+            $i = 0;
+            foreach ($this->order as $prop => $type) {
+                if($i > 0 && $count > 1) $q .= ",";
+                $q .= $prop." ".$type;
+                $i++;
+            }
+        }
         return $q;
     }
 
@@ -317,4 +331,16 @@ class Worker implements WorkerInterface{
         $this->maxResult = $maxResult;
         return $this;
     }
+
+    /**
+     * @param array $ordering
+     * @return WorkerInterface
+     */
+    public function order(array $ordering)
+    {
+        $this->order = $ordering;
+        return $this;
+    }
+
+
 } 

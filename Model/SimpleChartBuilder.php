@@ -232,5 +232,15 @@ class SimpleChartBuilder extends ChartBuilder implements WorkerInterface{
         return $this->worker->getMaxResult();
     }
 
+    /**
+     * @param array $ordering
+     * @return WorkerInterface
+     */
+    public function order(array $ordering)
+    {
+        $this->worker->order($ordering);
+        return $this;
+    }
+
 
 } 

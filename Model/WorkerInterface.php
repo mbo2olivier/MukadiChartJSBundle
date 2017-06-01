@@ -133,4 +133,10 @@ interface WorkerInterface {
      * @return integer
      */
     public function getMaxResult();
+
+    /**
+     * @param array $ordering
+     * @return WorkerInterface
+     */
+    public function order(array $ordering);
 } 

@@ -51,9 +51,9 @@ abstract class ChartBuilder {
         }
         if($this->worker->getFirstResult()){
             $q->setFirstResult($this->worker->getFirstResult());
-            if($this->worker->getMaxResult()){
-                $q->setMaxResults($this->worker->getMaxResult());
-            }
+        }
+        if($this->worker->getMaxResult()){
+            $q->setMaxResults($this->worker->getMaxResult());
         }
         $result = $q->getResult();
         $keys = $this->worker->getValueKeys();
