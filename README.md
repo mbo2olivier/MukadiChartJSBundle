@@ -43,7 +43,7 @@ class AppController extends Controller{
             ->addDataset('total','Total',[
                 "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
             ])
-            ->labels('post_type')
+            ->labels('type')
         ;
         $chart = $builder->buildChart('my_chart',Chart::PIE);
         return $this->render('chart.html.twig',[
