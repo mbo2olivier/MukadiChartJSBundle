@@ -8,33 +8,20 @@
 
 namespace Mukadi\ChartJSBundle\Twig;
 
+use Mukadi\Chart\Chart;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-use Mukadi\ChartJSBundle\Model\Chart;
-
-class ChartJSExtension extends \Twig_Extension {
-    /**
-     * @var \Twig_Environment
-     */
-    protected $templating;
-
-    public function __construct(\Twig_Environment $templating){
-        $this->templating = $templating;
-    }
+class ChartJSExtension extends AbstractExtension {
 
     public function getFunctions(){
         return array(
-            new \Twig_SimpleFunction('mukadi_chart',array($this, 'render'), array('is_safe' => array('html'))),
+            new TwigFunction('mukadi_chart',array($this, 'render'), array('is_safe' => array('html'))),
         );
     }
 
     public function render(Chart $chart){
-        return $this->templating->render('MukadiChartJSBundle::chart_container.html.twig',array(
-            "id" => $chart->getId(),
-            "type" => $chart->getType(),
-            "labels" => json_encode($chart->getLabels()),
-            "options" => json_encode($chart->getOptions()),
-            "datasets" => json_encode($chart->getDatasets()),
-        ));
+        return (string) $chart;
     }
 
     public function getName()

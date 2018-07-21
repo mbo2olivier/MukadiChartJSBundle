@@ -1,27 +1,32 @@
 {
     "name": "mukadi/chartjs-bundle",
-    "description": "build awesome chartJS charts directly from ORM Entities",
+    "description": "build awesome charts directly from your ORM Entities",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
         {
             "name" : "Olivier M. Mukadi",
-            "email" : "mbo2olivier@gmail.com",
-            "homepage": "http://www.virtualconsultafrica.com"
+            "email" : "olivier.m@geniusconception.com",
+            "homepage": "https://www.geniusconception.com"
         }
     ],
     "keywords" : [
         "symfony bundle", "Charts", "chart.js","chartjs","Chart builder","Graphics"
     ],
     "require": {
-        "php": ">=5.3.7",
-        "symfony/framework-bundle": "~2.1",
+        "php": ">=5.4",
+        "symfony/framework-bundle": "^2.7.22|~3.0|~4.0",
         "twig/twig": "~1.20|~2.0",
-        "doctrine/orm": "~2.4"
+        "doctrine/orm": "~2.4",
+        "mukadi/chartjs-builder": "^1.0",
+        "doctrine/doctrine-bundle":"^1.6"
     },
     "autoload" : {
         "psr-4" : {
             "Mukadi\\ChartJSBundle\\" : ""
         }
+    },
+    "suggest": {
+        "symfony/asset": "For a best management of your assests, URL generation and versionning"
     }
 }

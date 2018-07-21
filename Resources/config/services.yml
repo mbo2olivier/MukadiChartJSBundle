@@ -1,9 +1,18 @@
 services:
-    mukadi_chart_js.builder:
-        class: Mukadi\ChartJSBundle\Model\SimpleChartBuilder
+    mukadi_chart_js.dql:
+        class: Mukadi\ChartJSBundle\Chart\Builder
+        public: true
+        arguments: ["@doctrine.orm.entity_manager"]
+    mukadi_chart_js.native:
+        class: Mukadi\ChartJSBundle\Chart\NativeBuilder
+        public: true
         arguments: ["@doctrine.orm.entity_manager"]
     mukadi_chart_Js.twig_extension:
         class: Mukadi\ChartJSBundle\Twig\ChartJSExtension
-        arguments: [@twig]
+        public: true
         tags:
             - { name : twig.extension }
+    Mukadi\ChartJSBundle\Chart\Builder:
+        alias: mukadi_chart_js.dql
+    Mukadi\ChartJSBundle\Chart\NativeBuilder:
+        alias: mukadi_chart_js.native
