@@ -23,7 +23,7 @@ The bundle provide two chart builders as service:
 *service* | *class* | *description*
 --- | --- | ---
 mukadi_chart_js.dql | Mukadi\ChartJSBundle\Chart\Builder | For building chart from a DQL query
-mukadi_chart_js.naive | Mukadi\ChartJSBundle\Chart\NativeBuilder | For building chart from a native SQL query
+mukadi_chart_js.native | Mukadi\ChartJSBundle\Chart\NativeBuilder | For building chart from a native SQL query
 
 You can use chart builders like any other symfony service:
 
