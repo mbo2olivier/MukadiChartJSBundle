@@ -9,7 +9,7 @@
 namespace Mukadi\ChartJSBundle\Chart;
 
 use Mukadi\Chart\AbstractBuilder;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 /**
  * Class Builder.
@@ -18,13 +18,13 @@ use Doctrine\ORM\Query;
  */
 class Builder extends AbstractBuilder
 {
-    /** @var EntityManager $em */
+    /** @var EntityManagerInterface $em */
     protected $em;
 
     /** @var Query $q  */
     protected $q;
 
-    public function __construct(EntityManager $em) {
+    public function __construct(EntityManagerInterface $em) {
         $this->em = $em;
         $this->q = null;
     }

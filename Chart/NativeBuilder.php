@@ -9,7 +9,7 @@
 namespace Mukadi\ChartJSBundle\Chart;
 
 use Mukadi\Chart\AbstractBuilder;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\DBAL\Connection;
 
@@ -29,7 +29,7 @@ class NativeBuilder extends AbstractBuilder
    /** @var string $query  */
    protected $q;
 
-    public function __construct(EntityManager $em) {
+    public function __construct(EntityManagerInterface $em) {
         $this->connection = $em->getConnection();
         $this->vars = [];
         $this->q = null;
