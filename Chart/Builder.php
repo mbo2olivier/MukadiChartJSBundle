@@ -30,7 +30,12 @@ class Builder extends AbstractBuilder
     }
     
     public function query($query) {
-        $this->q = $this->em->createQuery($query);
+        if($query instanceof Query) {
+            $this->q = $query;
+        } else {
+            $this->q = $this->em->createQuery($query);
+        }
+        
         return $this;
     }
 

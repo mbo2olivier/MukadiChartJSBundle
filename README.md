@@ -52,6 +52,9 @@ class AppController extends Controller{
     }
 }
 ```
+You can also pass a Doctrine\ORM\Query object instead of a DQL query.
+This allow you to use a repository to store your charts queries.
+
 Please, see the [mukadi/chartjs-builder documentation](https://github.com/mbo2olivier/mukadi-chartjs-builder) if you want to learn more about chart construction.
 
 ## Render chart in twig template
