@@ -32,19 +32,20 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Mukadi\Chart\Utils\RandomColorFactory;
+use Mukadi\ChartJSBundle\Chart\Builder
 use Mukadi\Chart\Chart;
 
 class AppController extends Controller{
 
-    public function chart() {
-        $builder = $this->get('mukadi_chart_js.dql');
+    public function chart(Builder $builder) {
         $builder
-            ->query("SELECT COUNT(*) total, p.type FROM MukadiWordpressBundle:Post p GROUP BY p.type")
+            ->query('SELECT COUNT(*) total, p.type FROM \App\Entity\Post p GROUP BY p.type')
             ->addDataset('total','Total',[
                 "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
             ])
             ->labels('type')
         ;
+
         $chart = $builder->buildChart('my_chart',Chart::PIE);
         return $this->render('chart.html.twig',[
             "chart" => $chart,
@@ -55,6 +56,19 @@ class AppController extends Controller{
 You can also pass a Doctrine\ORM\Query object instead of a DQL query.
 This allow you to use a repository to store your charts queries.
 
+``` php
+    ...
+    $query = $this->getDoctrine()->getManager()->createQuery('SELECT COUNT(*) total, p.type FROM \App\Entity\Post p GROUP BY p.type');
+
+    $builder
+            ->query($query)
+            ->addDataset('total','Total',[
+                "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
+            ])
+            ->labels('type')
+        ;
+...
+```
 Please, see the [mukadi/chartjs-builder documentation](https://github.com/mbo2olivier/mukadi-chartjs-builder) if you want to learn more about chart construction.
 
 ## Render chart in twig template
@@ -67,7 +81,6 @@ In twig template use the dedicated function for chart rendering:
 Don't forget to include libraries in your page:
 
 ``` html
-<script src="/bundles/mukadichartjs/jquery.js"></script>
 <script src="/bundles/mukadichartjs/Chart.bundle.min.js"></script>
 <script src="/bundles/mukadichartjs/mukadi.chart.min.js"></script>
 
