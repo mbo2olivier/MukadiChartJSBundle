@@ -17,7 +17,7 @@ And run `php bin/console assets:install` for installing assets in the public web
 
 ## Chart Factory
 
-The bundle provide the `Mukadi\ChartJSBundle\Factory\ChartFactory` service (or `@mukadi.chart.factory` if you are using autowiring):
+The bundle provide the `Mukadi\ChartJSBundle\Factory\ChartFactory` service (or `@mukadi.chart.factory` if you are not using autowiring):
 
 You can use chart factory like any other symfony service:
 
@@ -101,7 +101,7 @@ namespace App\Chart;
 use Mukadi\Chart\ChartDefinitionBuilderInterface;
 use Mukadi\Chart\ChartDefinitionInterface;
 
-class VideoGame implements ChartDefinitionInterface {
+class VideoGameChart implements ChartDefinitionInterface {
     
     public function define(ChartDefinitionBuilderInterface $builder): void
     {
@@ -126,7 +126,7 @@ In your controller you only have to write this:
 ```php
  $chart = $factory
                 ->withNativeSql()
-                ->createFromDefinition(VideoGame::class)
+                ->createFromDefinition(VideoGameChart::class)
                 ->setParameter(':possesseur', 'Michel')
                 ->getChart()
                 ;
