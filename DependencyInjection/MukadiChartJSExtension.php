@@ -2,6 +2,7 @@
 
 namespace Mukadi\ChartJSBundle\DependencyInjection;
 
+use Mukadi\Chart\ChartDefinitionInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -19,6 +20,11 @@ class MukadiChartJSExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $container
+            ->registerForAutoconfiguration(ChartDefinitionInterface::class)
+            ->addTag("mukadi.chart.chart_definition")
+        ;
+        
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 

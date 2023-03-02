@@ -8,19 +8,19 @@
 
 namespace Mukadi\ChartJSBundle\Twig;
 
-use Mukadi\Chart\Chart;
+use Mukadi\Chart\ChartView;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class ChartJSExtension extends AbstractExtension {
 
-    public function getFunctions(){
+    public function getFunctions(): array {
         return array(
             new TwigFunction('mukadi_chart',array($this, 'render'), array('is_safe' => array('html'))),
         );
     }
 
-    public function render(Chart $chart){
+    public function render(ChartView $chart){
         return (string) $chart;
     }
 

@@ -2,3 +2,4 @@
 /vendor/
 /Controller/*
 /Tests/Controller/*
+.DS_Store

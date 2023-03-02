@@ -14,12 +14,12 @@
         "symfony bundle", "Charts", "chart.js","chartjs","Chart builder","Graphics"
     ],
     "require": {
-        "php": "^7.1.3",
-        "symfony/framework-bundle": "^5.0",
-        "twig/twig": "^2.10||^3.0",
+        "php": ">=8.0",
+        "symfony/framework-bundle": "^5.4|^6.0",
+        "twig/twig": "^3.0",
         "doctrine/orm": "^2.2",
-        "mukadi/chartjs-builder": "^1.1",
-        "doctrine/doctrine-bundle": "^1.0||^2.0"
+        "mukadi/chartjs-builder": "^2.0.1",
+        "doctrine/doctrine-bundle": "^2.0"
     },
     "autoload" : {
         "psr-4" : {
