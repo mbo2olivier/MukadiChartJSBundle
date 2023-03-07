@@ -18,7 +18,7 @@
         "symfony/framework-bundle": "^5.4|^6.0",
         "twig/twig": "^3.0",
         "doctrine/orm": "^2.2",
-        "mukadi/chartjs-builder": "^2.0.1",
+        "mukadi/chartjs-builder": "^2.1",
         "doctrine/doctrine-bundle": "^2.0"
     },
     "autoload" : {
